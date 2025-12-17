@@ -5,6 +5,7 @@
     <GenerateProgramFile>false</GenerateProgramFile>
     <IsPackable>false</IsPackable>
     <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
