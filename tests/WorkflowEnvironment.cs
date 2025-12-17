@@ -1,3 +1,5 @@
+using Temporalio.Testing;
+
 namespace TemporalioSamples.Tests;
 
 using System;
@@ -16,6 +18,7 @@ public class WorkflowEnvironment : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
+        /*
         env = await Temporalio.Testing.WorkflowEnvironment.StartLocalAsync(new()
         {
             DevServerOptions = new()
@@ -31,6 +34,24 @@ public class WorkflowEnvironment : IAsyncLifetime
                 ],
             },
         });
+        */
+
+        var opts = new WorkflowEnvironmentStartTimeSkippingOptions()
+        {
+            TestServer = new TestServerOptions()
+            {
+                DownloadVersion = "latest",
+                ExtraArgs =
+                [
+                    "--dynamic-config-value",
+                    "frontend.enableUpdateWorkflowExecution=true",
+                    // Enable multi-op
+                    "--dynamic-config-value",
+                    "frontend.enableExecuteMultiOperation=true"
+                ],
+            },
+        };
+        env = await Temporalio.Testing.WorkflowEnvironment.StartTimeSkippingAsync(opts);
     }
 
     public async Task DisposeAsync()
