@@ -43,11 +43,19 @@ public class WorkflowEnvironment : IAsyncLifetime
                 DownloadVersion = "latest",
                 ExtraArgs =
                 [
+                    "--tls=false",
+                    "--tls-disable-host-verification=true",
                     "--dynamic-config-value",
                     "frontend.enableUpdateWorkflowExecution=true",
                     // Enable multi-op
                     "--dynamic-config-value",
-                    "frontend.enableExecuteMultiOperation=true"
+                    "frontend.enableExecuteMultiOperation=true",
+                    "--dynamic-config-value",
+                    "frontend.disableHostVerification=true",
+                    "--dynamic-config-value",
+                    "internode.disableHostVerification=true",
+                    "--dynamic-config-value",
+                    "insecure-skip-verify=true",
                 ],
             },
         };
