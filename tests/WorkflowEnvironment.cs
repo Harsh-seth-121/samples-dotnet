@@ -18,7 +18,6 @@ public class WorkflowEnvironment : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        /*
         env = await Temporalio.Testing.WorkflowEnvironment.StartLocalAsync(new()
         {
             DevServerOptions = new()
@@ -34,32 +33,6 @@ public class WorkflowEnvironment : IAsyncLifetime
                 ],
             },
         });
-        */
-
-        var opts = new WorkflowEnvironmentStartTimeSkippingOptions()
-        {
-            TestServer = new TestServerOptions()
-            {
-                DownloadVersion = "latest",
-                ExtraArgs =
-                [
-                    "--tls=false",
-                    "--tls-disable-host-verification=true",
-                    "--dynamic-config-value",
-                    "frontend.enableUpdateWorkflowExecution=true",
-                    // Enable multi-op
-                    "--dynamic-config-value",
-                    "frontend.enableExecuteMultiOperation=true",
-                    "--dynamic-config-value",
-                    "frontend.disableHostVerification=true",
-                    "--dynamic-config-value",
-                    "internode.disableHostVerification=true",
-                    "--dynamic-config-value",
-                    "insecure-skip-verify=true",
-                ],
-            },
-        };
-        env = await Temporalio.Testing.WorkflowEnvironment.StartTimeSkippingAsync(opts);
     }
 
     public async Task DisposeAsync()

@@ -65,7 +65,7 @@ public class CallerWorkflowTests : WorkflowEnvironmentTestBase
         });
     }
 
-    [Fact]
+    [TimeSkippingServerFact]
     public async Task RunAsync_EchoCallerWorkflow_Succeeds()
     {
         // Run handler worker
@@ -91,7 +91,7 @@ public class CallerWorkflowTests : WorkflowEnvironmentTestBase
         });
     }
 
-    [Fact]
+    [TimeSkippingServerFact]
     public async Task RunAsync_HelloCallerWorkflow_Succeeds()
     {
         // Run handler worker
