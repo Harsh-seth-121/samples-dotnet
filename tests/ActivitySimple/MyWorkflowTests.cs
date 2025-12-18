@@ -14,10 +14,10 @@ public class MyWorkflowTests : TestBase
     {
     }
 
-    [Fact]
+    [TimeSkippingServerFact]
     public async Task RunAsync_SimpleRun_Succeeds()
     {
-        await using var env = await WorkflowEnvironment.StartLocalAsync();
+        await using var env = await WorkflowEnvironment.StartTimeSkippingAsync();
         var myActivities = new MyActivities();
         using var worker = new TemporalWorker(
             env.Client,
